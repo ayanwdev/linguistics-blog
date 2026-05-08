@@ -9,6 +9,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 import { NavBar } from "@/components/nav-bar"
+import { Analytics } from "@vercel/analytics/next"
 
 const playfairDisplayHeading = Playfair_Display({
   subsets: ["latin"],
@@ -44,6 +45,7 @@ export default function RootLayout({
           <NavBar />
           {children}
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   )
