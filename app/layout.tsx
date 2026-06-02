@@ -8,9 +8,10 @@ import {
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
-import { NavBar } from "@/components/nav-bar"
+import { NavBar } from "@/components/nav/bar"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Metadata } from "next"
 
 const playfairDisplayHeading = Playfair_Display({
   subsets: ["latin"],
@@ -23,6 +24,12 @@ const fontMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
 })
+
+export const metadata: Metadata = {
+  title: "Linguistics Blog",
+  description: "A blog about linguistics and related topics.",
+  metadataBase: new URL("https://linguistics-blog.vercel.app"),
+}
 
 export default function RootLayout({
   children,
