@@ -3130,6 +3130,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"appwrite@npm:^25.2.0":
+  version: 25.2.0
+  resolution: "appwrite@npm:25.2.0"
+  dependencies:
+    json-bigint: "npm:1.0.0"
+  checksum: 10c0/95590a14686decbd47b6427ea90e4225077808f993e6b2b9058145aa80984a0566a8341c9afb1981ce5aff72dea8d2cd72ca2755d42c0e797efa6c6051797d7f
+  languageName: node
+  linkType: hard
+
 "argparse@npm:^2.0.1":
   version: 2.0.1
   resolution: "argparse@npm:2.0.1"
@@ -3333,6 +3342,13 @@ __metadata:
   bin:
     baseline-browser-mapping: dist/cli.cjs
   checksum: 10c0/8ebadaeeddc99367a1522661476d6c895b452a96023c6cef0576aecf8f5f6d37c91e6bde8fa8904cc11a32c5c6bc9df2030481504e50a5aed17e6c7f8bac3b5a
+  languageName: node
+  linkType: hard
+
+"bignumber.js@npm:^9.0.0":
+  version: 9.3.1
+  resolution: "bignumber.js@npm:9.3.1"
+  checksum: 10c0/61342ba5fe1c10887f0ecf5be02ff6709271481aff48631f86b4d37d55a99b87ce441cfd54df3d16d10ee07ceab7e272fc0be430c657ffafbbbf7b7d631efb75
   languageName: node
   linkType: hard
 
@@ -5584,6 +5600,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"json-bigint@npm:1.0.0":
+  version: 1.0.0
+  resolution: "json-bigint@npm:1.0.0"
+  dependencies:
+    bignumber.js: "npm:^9.0.0"
+  checksum: 10c0/e3f34e43be3284b573ea150a3890c92f06d54d8ded72894556357946aeed9877fd795f62f37fe16509af189fd314ab1104d0fd0f163746ad231b9f378f5b33f4
+  languageName: node
+  linkType: hard
+
 "json-buffer@npm:3.0.1":
   version: 3.0.1
   resolution: "json-buffer@npm:3.0.1"
@@ -5858,6 +5883,7 @@ __metadata:
     "@types/react-dom": "npm:^19.2.3"
     "@vercel/analytics": "npm:^2.0.1"
     "@vercel/speed-insights": "npm:^2.0.0"
+    appwrite: "npm:^25.2.0"
     class-variance-authority: "npm:^0.7.1"
     clsx: "npm:^2.1.1"
     eslint: "npm:^9.39.4"

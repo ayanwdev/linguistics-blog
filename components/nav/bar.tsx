@@ -12,7 +12,7 @@ import { Button } from "../ui/button"
 import { ThemeToggler } from "../theme-toggler"
 import { NavDrawer } from "./drawer"
 import { useCurrentUser } from "@/hooks/use-current-user"
-import { UserMenu } from "../avatar-menu"
+import { AvatarMenu } from "../avatar-menu"
 
 const navLinks = [
   { name: "Articles", path: "/articles" },
@@ -51,7 +51,7 @@ export function NavBar() {
           <ThemeToggler />
 
           {loading ? null : user ? (
-            <UserMenu user={user} />
+            <AvatarMenu user={user} />
           ) : (
             <Button asChild size="sm">
               <Link href="/auth">Start Writing</Link>

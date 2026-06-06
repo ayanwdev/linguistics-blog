@@ -13,15 +13,22 @@ import {
 import { client, account } from "@/lib/appwrite"
 import type { Models } from "appwrite"
 
-const avatars = new Avatars(client)
-
-const menuItems: { label: string; href: string; icon: LucideIcon }[] = [
+export const avatarMenuItems: {
+  label: string
+  href: string
+  icon: LucideIcon
+}[] = [
   { label: "View Profile", href: "/profile", icon: User },
   { label: "Manage Account", href: "/account", icon: Settings2 },
   { label: "Submit Article", href: "/new", icon: PlusSquare },
 ]
 
-export function UserMenu({ user }: { user: Models.User<Models.Preferences> }) {
+export function AvatarMenu({
+  user,
+}: {
+  user: Models.User<Models.Preferences>
+}) {
+  const avatars = new Avatars(client())
   const handleSignOut = async () => {
     try {
       await account.deleteSession({ sessionId: "current" })
@@ -37,7 +44,7 @@ export function UserMenu({ user }: { user: Models.User<Models.Preferences> }) {
       <DropdownMenuTrigger asChild>
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/80 text-foreground shadow-sm transition hover:bg-muted"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/80 text-foreground shadow-sm transition md:ml-0"
           aria-label="Open user menu"
         >
           <Avatar>
@@ -53,7 +60,7 @@ export function UserMenu({ user }: { user: Models.User<Models.Preferences> }) {
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {menuItems.map(({ label, href, icon: Icon }) => (
+        {avatarMenuItems.map(({ label, href, icon: Icon }) => (
           <DropdownMenuItem key={href} asChild>
             <Link
               href={href}

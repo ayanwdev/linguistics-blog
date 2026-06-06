@@ -6,9 +6,8 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { client } from "@/lib/appwrite"
 import { Avatars } from "appwrite"
 
-const avatars = new Avatars(client)
-
 export default function ProfilePage() {
+  const avatars = new Avatars(client())
   const { user, loading } = useCurrentUser()
 
   return (

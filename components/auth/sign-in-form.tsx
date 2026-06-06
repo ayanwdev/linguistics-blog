@@ -5,7 +5,9 @@ import { FormField } from "@/components/form-field"
 type Props = {
   data: { email: string; password: string }
   onSubmit: (e: React.SubmitEvent) => void
-  onChange: (field: any) => (e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange: (
+    field: "email" | "password",
+  ) => (e: React.ChangeEvent<HTMLInputElement>) => void
   loading: boolean
 }
 
