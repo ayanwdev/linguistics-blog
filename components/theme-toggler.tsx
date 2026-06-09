@@ -17,17 +17,6 @@ export const ThemeToggler = ({
   const [displayDark, setDisplayDark] = React.useState(
     () => resolvedTheme === "dark",
   )
-  const [isAnimating, setIsAnimating] = React.useState(false)
-
-  const handleToggle = () => {
-    setIsAnimating(true)
-    setTimeout(() => {
-      const next = !displayDark
-      setDisplayDark(next)
-      setTheme(next ? "dark" : "light")
-      setTimeout(() => setIsAnimating(false), 150)
-    }, 150)
-  }
 
   return (
     <Button
@@ -35,14 +24,13 @@ export const ThemeToggler = ({
       size={size}
       type="button"
       aria-label="Toggle theme"
-      onClick={handleToggle}
+      onClick={() => {
+        setDisplayDark((prev) => !prev)
+        setTheme(resolvedTheme === "dark" ? "light" : "dark")
+      }}
       className={`p-3 ${className}`}
     >
-      <span
-        key={String(displayDark)}
-        className={isAnimating ? "icon-spin-out" : "icon-spin-in"}
-        style={{ display: "flex" }}
-      >
+      <span key={String(displayDark)} style={{ display: "flex" }}>
         {displayDark ? (
           <SunIcon className="h-4.5 w-4.5" />
         ) : (

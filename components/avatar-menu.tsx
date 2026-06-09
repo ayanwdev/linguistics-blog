@@ -19,7 +19,7 @@ export const avatarMenuItems: {
   icon: LucideIcon
 }[] = [
   { label: "View Profile", href: "/profile", icon: User },
-  { label: "Manage Account", href: "/account", icon: Settings2 },
+  { label: "Manage Account", href: "/auth", icon: Settings2 },
   { label: "Submit Article", href: "/new", icon: PlusSquare },
 ]
 

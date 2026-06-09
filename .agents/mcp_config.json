@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "shadcn": {
+      "command": "yarn",
+      "args": ["dlx", "shadcn@latest", "mcp"]
+    },
+    "appwrite-docs": {
+      "serverUrl": "https://mcp-for-docs.appwrite.io"
+    }
+  }
+}

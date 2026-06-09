@@ -2,12 +2,12 @@
 
 import { Input } from "@/components/ui/input"
 
-// Reusable FormField
 export const FormField = ({
   id,
   label,
   required,
   hint,
+  className,
   ...inputProps
 }: {
   id: string
@@ -16,22 +16,12 @@ export const FormField = ({
   hint?: string
 } & React.ComponentProps<typeof Input>) => {
   return (
-    <div>
+    <div className={className}>
       <label htmlFor={id} className="text-sm font-medium">
-        {label} {required && <span className="text-red-500">*</span>}
+        {label} {required && <span className="text-red-500">{"*"}</span>}
       </label>
       <Input id={id} required={required} className="mt-1" {...inputProps} />
       {hint && <p className="mt-1 text-xs text-muted-foreground">{hint}</p>}
     </div>
   )
 }
-
-// Types
-type SignUpData = {
-  fullName: string
-  username: string
-  email: string
-  password: string
-  institution: string
-}
-type LoginData = { email: string; password: string }

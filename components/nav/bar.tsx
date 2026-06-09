@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import { Avatars } from "appwrite"
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -13,10 +12,11 @@ import { ThemeToggler } from "../theme-toggler"
 import { NavDrawer } from "./drawer"
 import { useCurrentUser } from "@/hooks/use-current-user"
 import { AvatarMenu } from "../avatar-menu"
+import { Skeleton } from "../ui/skeleton"
 
 const navLinks = [
   { name: "Articles", path: "/articles" },
-  { name: "Miscellaneous", path: "/miscellaneous" },
+  { name: "Projects", path: "/projects" },
   { name: "About", path: "/about" },
 ]
 
@@ -24,7 +24,7 @@ export function NavBar() {
   const { user, loading } = useCurrentUser()
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur">
+    <nav className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
         <div className="flex w-1/4">
           <Link
@@ -39,9 +39,15 @@ export function NavBar() {
           <NavigationMenuList className="flex gap-1">
             {navLinks.map((link) => (
               <NavigationMenuItem key={link.path}>
-                <NavigationMenuLink href={link.path}>
+                {/* <NavigationMenuLink href={link.path}>
                   {link.name}
-                </NavigationMenuLink>
+                </NavigationMenuLink> */}
+                <Link
+                  href={link.path}
+                  className="inline-flex items-center px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
+                >
+                  {link.name}
+                </Link>
               </NavigationMenuItem>
             ))}
           </NavigationMenuList>
@@ -50,7 +56,9 @@ export function NavBar() {
         <div className="hidden w-1/4 items-center justify-end gap-2 md:flex">
           <ThemeToggler />
 
-          {loading ? null : user ? (
+          {loading ? (
+            <Skeleton className="h-10 w-10 rounded-full" />
+          ) : user ? (
             <AvatarMenu user={user} />
           ) : (
             <Button asChild size="sm">
@@ -61,6 +69,6 @@ export function NavBar() {
 
         <NavDrawer links={navLinks} />
       </div>
-    </header>
+    </nav>
   )
 }

@@ -29,6 +29,9 @@ export const metadata: Metadata = {
   title: "Linguistics Blog",
   description: "A blog about linguistics and related topics.",
   metadataBase: new URL("https://linguistics-blog.vercel.app"),
+  other: {
+    "darkreader-lock": "",
+  },
 }
 
 export default function RootLayout({
@@ -51,7 +54,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider>
           <NavBar />
-          {children}
+          <section className="p-4 md:p-24">{children}</section>
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />

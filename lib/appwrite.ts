@@ -22,13 +22,17 @@ function getClient() {
 
 export const account = new Proxy({} as Account, {
   get(_, prop) {
-    return (new Account(getClient()) as any)[prop]
+    const instance = new Account(getClient())
+    const value = instance[prop as keyof Account]
+    return typeof value === "function" ? value.bind(instance) : value
   },
 })
 
 export const avatars = new Proxy({} as Avatars, {
   get(_, prop) {
-    return (new Avatars(getClient()) as any)[prop]
+    const instance = new Avatars(getClient())
+    const value = instance[prop as keyof Avatars]
+    return typeof value === "function" ? value.bind(instance) : value
   },
 })
 
