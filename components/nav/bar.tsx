@@ -4,7 +4,6 @@ import Link from "next/link"
 import {
   NavigationMenu,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
 } from "../ui/navigation-menu"
 import { Button } from "../ui/button"
@@ -39,9 +38,6 @@ export function NavBar() {
           <NavigationMenuList className="flex gap-1">
             {navLinks.map((link) => (
               <NavigationMenuItem key={link.path}>
-                {/* <NavigationMenuLink href={link.path}>
-                  {link.name}
-                </NavigationMenuLink> */}
                 <Link
                   href={link.path}
                   className="inline-flex items-center px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"

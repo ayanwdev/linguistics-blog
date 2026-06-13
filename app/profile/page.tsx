@@ -1,76 +1,78 @@
 "use client"
 
-import { useCurrentUser } from "@/hooks/use-current-user"
-import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/badge"
+import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { Skeleton } from "@/components/ui/skeleton"
-import { client } from "@/lib/appwrite"
-import { Avatars } from "appwrite"
+import { useProfile } from "@/hooks/use-profile"
+import {
+  AtSign,
+  AtSignIcon,
+  InfoIcon,
+  PaperclipIcon,
+  School,
+} from "lucide-react"
 
 export default function ProfilePage() {
-  const avatars = new Avatars(client())
-  const { user, loading } = useCurrentUser()
+  const { data: profile, loading, getAvatar } = useProfile()
+
+  if (loading) {
+    return (
+      <section>
+        <div className="flex flex-row p-6">
+          <Skeleton className="h-36 w-36 rounded-full" />
+          <div className="ml-6 flex items-center">
+            <div className="flex flex-col gap-2">
+              <Skeleton className="h-8 w-48" />
+              <Skeleton className="mt-2 h-4 w-32" />
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   return (
-    <div className="flex min-h-screen items-center justify-center p-4">
-      <div className="w-full max-w-md border border-gray-200 bg-white p-8 shadow-lg dark:border-gray-800 dark:bg-gray-950">
-        <h1 className="mb-6 text-2xl font-bold">Profile</h1>
+    <section>
+      <div className="flex flex-row border-b-2 border-dashed border-accent p-6">
+        <Avatar className="h-36 w-36">
+          <AvatarImage src={getAvatar()} alt={`${profile?.name} avatar`} />
+        </Avatar>
 
-        {loading && (
-          <div className="space-y-4">
-            <div>
-              <p className="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                Name
-              </p>
-              <Skeleton className="h-6 w-full" />
-            </div>
-            <div>
-              <p className="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                Email
-              </p>
-              <Skeleton className="h-6 w-full" />
-            </div>
-            <div>
-              <p className="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                User ID
-              </p>
-              <Skeleton className="h-6 w-full" />
-            </div>
-          </div>
-        )}
-
-        {user && (
-          <div className="space-y-6">
-            <div className="flex items-center gap-4 rounded-xl border border-gray-200 bg-gray-50 px-4 py-4 dark:border-gray-800 dark:bg-gray-900">
-              <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-white shadow-sm dark:bg-gray-800">
-                <img
-                  src={avatars.getInitials({
-                    name: user.name,
-                    width: 160,
-                    height: 160,
-                  })}
-                  alt={`${user.name} avatar`}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div>
-                <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  Signed in as
-                </p>
-                <p className="text-lg font-semibold text-gray-900 dark:text-white">
-                  {user.name}
-                </p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  {"@" + user.$id}
-                </p>
+        <div className="ml-6 flex">
+          <div className="flex flex-col">
+            <h1 className="text-3xl font-semibold">{profile?.name}</h1>
+            {/* --- */}
+            <div className="mt-2 flex items-center">
+              <AtSignIcon size={17} className="text-muted-foreground" />
+              <span className="ml-2 text-sm text-muted-foreground">
+                {profile?.$id}
+              </span>
+              <div className="ml-2">
+                <Badge name="dev" />
               </div>
             </div>
-
-            <Button variant="outline" className="mt-4 w-full">
-              Edit Profile
-            </Button>
+            {/* --- */}
+            <div className="mt-2 flex items-center">
+              <PaperclipIcon size={17} className="text-muted-foreground" />
+              <span className={"ml-2 text-sm text-muted-foreground"}>
+                {"BA Linguistics, NLP + ML Enthusiast"}
+              </span>
+            </div>
+            {/* --- */}
+            <div className="mt-2 flex items-center">
+              <School size={17} className="text-muted-foreground" />
+              <span className="ml-2 text-sm text-muted-foreground">
+                {"University of Dhaka"}
+              </span>
+            </div>
+            {/* --- */}
           </div>
-        )}
+        </div>
       </div>
-    </div>
+
+      <div className="pt-12">
+        <h1 className="text-2xl font-semibold">{"Articles (0)"}</h1>
+      </div>
+    </section>
   )
 }

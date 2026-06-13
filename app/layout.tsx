@@ -54,7 +54,9 @@ export default function RootLayout({
       <body>
         <ThemeProvider>
           <NavBar />
-          <section className="p-4 md:p-24">{children}</section>
+          <section className="mx-auto h-screen max-w-7xl px-4 sm:px-6 md:border-x-2 md:border-dashed md:border-accent md:pt-4 lg:px-8">
+            {children}
+          </section>
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />

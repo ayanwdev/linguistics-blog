@@ -1,9 +1,9 @@
 "use client"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { AppwriteException, ID } from "appwrite"
+import { AppwriteException, ID, TablesDB } from "appwrite"
 import { signUp, login } from "@/lib/auth"
-import { account } from "@/lib/appwrite"
+import { account, client } from "@/lib/appwrite"
 
 const generateUsername = (name: string) =>
   name
@@ -60,12 +60,29 @@ export function useAuth() {
     setError(null)
     setLoading(true)
     try {
-      await signUp({
+      const created = await signUp({
         fullName: signUpData.fullName,
         username: signUpData.username || ID.unique(),
         email: signUpData.email,
         password: signUpData.password,
       })
+
+      try {
+        const tables = new TablesDB(client())
+        await tables.createRow({
+          databaseId: process.env.NEXT_PUBLIC_APPWRITE_PROFILES_DB!,
+          tableId: "profiles",
+          rowId: created.$id,
+          data: {
+            name: created.name,
+            institution: "",
+            about: "",
+          },
+        })
+      } catch (profileErr) {
+        console.error("Failed to create profile", profileErr)
+      }
+
       setSignUpData({ fullName: "", username: "", email: "", password: "" })
       router.push("/profile")
     } catch (err) {
@@ -77,7 +94,7 @@ export function useAuth() {
     }
   }
 
-  const handleLogin = async (e: React.SubmitEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
     setLoading(true)

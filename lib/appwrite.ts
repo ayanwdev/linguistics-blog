@@ -1,28 +1,28 @@
-import { Client, Account, Avatars } from "appwrite"
+import { Client, Account, Avatars, TablesDB, AppwriteException } from "appwrite"
 
-let client: Client | null = null
+let _client: Client | null = null
 
-function getClient() {
-  if (client) return client
-  client = new Client()
+export function client() {
+  if (_client) return _client
+  _client = new Client()
 
   const endpoint = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT
   const projectId = process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID
 
   if (endpoint && typeof endpoint === "string") {
-    client.setEndpoint(endpoint)
+    _client.setEndpoint(endpoint)
   }
 
   if (projectId && typeof projectId === "string") {
-    client.setProject(projectId)
+    _client.setProject(projectId)
   }
 
-  return client
+  return _client
 }
 
 export const account = new Proxy({} as Account, {
   get(_, prop) {
-    const instance = new Account(getClient())
+    const instance = new Account(client())
     const value = instance[prop as keyof Account]
     return typeof value === "function" ? value.bind(instance) : value
   },
@@ -30,10 +30,8 @@ export const account = new Proxy({} as Account, {
 
 export const avatars = new Proxy({} as Avatars, {
   get(_, prop) {
-    const instance = new Avatars(getClient())
+    const instance = new Avatars(client())
     const value = instance[prop as keyof Avatars]
     return typeof value === "function" ? value.bind(instance) : value
   },
 })
-
-export { getClient as client }
