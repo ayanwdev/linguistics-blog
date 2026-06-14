@@ -1,4 +1,4 @@
-import { Account, Client, ID, AppwriteException } from "appwrite"
+import { Account, Client } from "appwrite"
 
 const getAccount = () => {
   const client = new Client()

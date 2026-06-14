@@ -4,13 +4,7 @@ import { Badge } from "@/components/badge"
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useProfile } from "@/hooks/use-profile"
-import {
-  AtSign,
-  AtSignIcon,
-  InfoIcon,
-  PaperclipIcon,
-  School,
-} from "lucide-react"
+import { AtSignIcon, FeatherIcon, School } from "lucide-react"
 
 export default function ProfilePage() {
   const { data: profile, loading, getAvatar } = useProfile()
@@ -53,7 +47,7 @@ export default function ProfilePage() {
             </div>
             {/* --- */}
             <div className="mt-2 flex items-center">
-              <PaperclipIcon size={17} className="text-muted-foreground" />
+              <FeatherIcon size={17} className="text-muted-foreground" />
               <span className={"ml-2 text-sm text-muted-foreground"}>
                 {"BA Linguistics, NLP + ML Enthusiast"}
               </span>

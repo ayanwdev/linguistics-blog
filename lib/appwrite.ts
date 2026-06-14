@@ -1,4 +1,4 @@
-import { Client, Account, Avatars, TablesDB, AppwriteException } from "appwrite"
+import { Client, Account, Avatars } from "appwrite"
 
 let _client: Client | null = null
 

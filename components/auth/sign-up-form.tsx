@@ -1,6 +1,7 @@
 "use client"
 import { Button } from "@/components/ui/button"
 import { FormField } from "@/components/form-field"
+import { EmailButton } from "./sign-up-email-button"
 
 type Props = {
   data: { fullName: string; username: string; email: string; password: string }
@@ -32,6 +33,7 @@ export function SignUpForm({
       <FormField
         id="username"
         label="Username"
+        required
         placeholder="Choose a unique username"
         value={data.username}
         onChange={onUsernameChange}
@@ -55,9 +57,11 @@ export function SignUpForm({
         onChange={onChange("password")}
         type="password"
       />
+
       <Button type="submit" className="w-full" disabled={loading}>
         {loading ? "Signing up..." : "Sign Up"}
       </Button>
+      <EmailButton />
     </form>
   )
 }

@@ -14,8 +14,8 @@ import { AvatarMenu } from "../avatar-menu"
 import { Skeleton } from "../ui/skeleton"
 
 const navLinks = [
-  { name: "Articles", path: "/articles" },
   { name: "Projects", path: "/projects" },
+  { name: "Articles", path: "/articles" },
   { name: "About", path: "/about" },
 ]
 

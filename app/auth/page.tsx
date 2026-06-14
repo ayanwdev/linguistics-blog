@@ -21,7 +21,7 @@ export default function Auth() {
   } = useAuth()
 
   return (
-    <div className="flex h-full items-center justify-center p-4">
+    <div className="flex h-full justify-center p-4">
       <div className="w-full max-w-md space-y-4">
         {error && <p className="text-sm text-red-500">{error}</p>}
         <Tabs defaultValue="signup" className="w-full">

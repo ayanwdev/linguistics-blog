@@ -5,8 +5,6 @@ import { Button } from "@/components/ui/button"
 import { FormField } from "@/components/form-field"
 import { Upload } from "lucide-react"
 
-const contactEmail = "peepeepoopoo@mail.com"
-
 export function SubmissionForm() {
   const [fileName, setFileName] = React.useState("")
 
@@ -87,15 +85,6 @@ export function SubmissionForm() {
               </span>
             </span>
           </label>
-          <p className="text-xs text-muted-foreground">
-            {"Or send your manuscript via email: "}
-            <a
-              href={`mailto:${contactEmail}`}
-              className="break-all text-primary underline underline-offset-2"
-            >
-              {contactEmail}
-            </a>
-          </p>
           <input
             required
             id="article-file"
