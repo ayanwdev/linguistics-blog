@@ -3,13 +3,13 @@ import * as React from "react"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { FormField } from "@/components/form-field"
-import { Upload } from "lucide-react"
+import { FileIcon, Upload } from "lucide-react"
 
 export function SubmissionForm() {
   const [fileName, setFileName] = React.useState("")
 
   return (
-    <div className="min-w-0 bg-muted p-8 md:p-12">
+    <div className="flex w-full flex-col bg-card p-8 md:w-2/3 md:p-12">
       <h1 className="text-3xl font-semibold">{"Submit an Article"}</h1>
       <p className="pt-1 text-muted-foreground">
         {"Publish your article on linguistics."}
@@ -79,7 +79,11 @@ export function SubmissionForm() {
             className="flex min-h-18 cursor-pointer items-center justify-center border-[2px] border-dashed border-border bg-background/50 px-4 py-6 text-sm text-muted-foreground transition-colors hover:border-ring hover:text-foreground"
           >
             <span className="flex min-w-0 items-center gap-3">
-              <Upload className="size-4" aria-hidden="true" />
+              {fileName ? (
+                <FileIcon className="size-4" aria-hidden="true" />
+              ) : (
+                <Upload className="size-4" aria-hidden="true" />
+              )}
               <span className="min-w-0 break-words">
                 {fileName || "Select a PDF, Word, or Markdown file (max 10 MB)"}
               </span>

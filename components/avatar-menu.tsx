@@ -20,7 +20,7 @@ export const avatarMenuItems: {
 }[] = [
   { label: "View Profile", href: "/profile", icon: User },
   { label: "Manage Account", href: "/auth", icon: Settings2 },
-  { label: "Submit Article", href: "/new", icon: PlusSquare },
+  { label: "Submit Article", href: "/submit", icon: PlusSquare },
 ]
 
 export function AvatarMenu({

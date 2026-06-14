@@ -33,7 +33,7 @@ const guidelines = [
 
 export function SubmissionGuidelines() {
   return (
-    <div className="min-w-0 bg-muted p-8 md:p-12">
+    <div className="mb-8 flex w-full flex-col bg-muted p-8 md:w-1/3 md:p-12">
       <h2 className="text-3xl font-semibold">{"Guidelines"}</h2>
       <p className="pt-1 text-muted-foreground">
         {"Please read before submitting."}

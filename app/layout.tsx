@@ -7,6 +7,7 @@ import { NavBar } from "@/components/nav/bar"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Metadata } from "next"
+import { Footer } from "@/components/footer"
 
 const playfairDisplayHeading = Playfair_Display({
   subsets: ["latin"],
@@ -46,11 +47,14 @@ export default function RootLayout({
         playfairDisplayHeading.variable,
       )}
     >
-      <body>
+      <body className="flex min-h-screen flex-col">
         <ThemeProvider>
           <NavBar />
-          <section className="mx-auto h-screen max-w-7xl px-4 sm:px-6 md:border-x-2 md:border-dashed md:border-accent md:pt-4 lg:px-8">
+          <section className="mx-auto min-h-svh w-full max-w-7xl flex-1 px-4 sm:px-6 md:border-x-2 md:border-dashed md:border-accent md:pt-4 lg:px-8">
             {children}
+          </section>
+          <section className="bg-muted">
+            <Footer />
           </section>
         </ThemeProvider>
         <Analytics />
