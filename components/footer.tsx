@@ -67,7 +67,7 @@ export function Footer() {
             " PlaceHolder. All rights reserved."}
         </p>
         <p className="text-xs text-foreground/40">
-          I don't know what to write here
+          I dont know what to write here
         </p>
       </div>
     </footer>

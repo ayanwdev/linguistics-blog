@@ -7,6 +7,10 @@
     "appwrite-docs": {
       "url": "https://mcp-for-docs.appwrite.io",
       "type": "http"
+    },
+    "next-devtools": {
+      "command": "yarn",
+      "args": ["dlx", "next-devtools-mcp@latest"]
     }
   }
 }
