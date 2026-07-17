@@ -1,11 +1,17 @@
+import { Hero } from "@/components/home/hero"
+import { ArticleGrid } from "@/components/home/article/grid"
+import { Project } from "@/components/home/project"
+import { Socials } from "@/components/home/socials"
+import { Newsletter } from "@/components/home/newsletter"
+
 export default function Page() {
   return (
-    <div className="flex p-6">
-      <div className="flex w-screen min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div className="flex h-36 w-full items-center justify-center font-heading text-3xl md:text-6xl">
-          {"The Parallel Linguistics Club"}
-        </div>
-      </div>
-    </div>
+    <section>
+      <Hero />
+      <ArticleGrid />
+      <Project />
+      <Socials />
+      <Newsletter />
+    </section>
   )
 }

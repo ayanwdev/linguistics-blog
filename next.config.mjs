@@ -4,7 +4,10 @@ const appwriteEndpoint =
 
 const nextConfig = {
   images: {
-    remotePatterns: [
+    remotePatterns: [{
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
       {
         protocol: "https",
         hostname: new URL(appwriteEndpoint).hostname,

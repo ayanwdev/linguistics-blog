@@ -30,7 +30,9 @@ export function NavBar() {
             href="/"
             className="text-lg font-semibold transition hover:text-primary"
           >
-            PlaceHolder
+            <span className="font-header text-base font-black tracking-tight">
+              ¶ PLC
+            </span>
           </Link>
         </div>
 

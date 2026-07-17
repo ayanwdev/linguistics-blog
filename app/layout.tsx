@@ -1,4 +1,4 @@
-import { Geist_Mono, Noto_Sans, Playfair_Display } from "next/font/google"
+import { Geist_Mono, Noto_Sans, Fraunces } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -35,9 +35,10 @@ for (const key of [
   }
 }
 
-const playfairDisplayHeading = Playfair_Display({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-heading",
+  weight: ["700"],
+  variable: "--font-header",
 })
 
 const fontMono = Geist_Mono({
@@ -61,7 +62,7 @@ export default function RootLayout({
         fontMono.variable,
         "font-sans",
         notoSans.variable,
-        playfairDisplayHeading.variable,
+        fraunces.variable,
       )}
     >
       <body className="flex min-h-screen flex-col">

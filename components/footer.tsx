@@ -1,74 +1,79 @@
 import Link from "next/link"
 
-const footerSections = [
-  {
-    title: "Explore",
-    links: [
-      { label: "Articles", href: "/articles" },
-      { label: "Miscellaneous", href: "/miscellaneous" },
-      { label: "About", href: "/about" },
-    ],
-  },
-  {
-    title: "Contribute",
-    links: [
-      { label: "Submit an Article", href: "/submit" },
-      { label: "Guidelines", href: "/guidelines" },
-      { label: "Contact Us", href: "mailto:placeholder@mail.com" },
-    ],
-  },
-  {
-    title: "Community",
-    links: [
-      { label: "Forum", href: "/forum" },
-      { label: "Newsletter", href: "/newsletter" },
-      { label: "RSS Feed", href: "/rss" },
-    ],
-  },
-]
-
 export function Footer() {
   return (
-    <footer className="mx-auto max-w-7xl px-4 py-12">
-      <div className="flex flex-col gap-10 md:flex-row md:justify-between">
-        <div className="flex-1">
-          <h1 className="text-xl font-semibold text-foreground/75">
-            {"PlaceHolder"}
-          </h1>
-          <p className="mt-1 text-sm text-foreground/50">
-            {
-              "An independent platform for discussing politics. Bla bla bla yappity yappity yap yap pee pee poo poo. i hate university."
-            }
-          </p>
-        </div>
-        <div className="flex flex-1 flex-wrap gap-10">
-          {footerSections.map((section) => (
-            <div key={section.title} className="flex flex-1 flex-col gap-2">
-              <span className="text-sm font-semibold text-foreground/75">
-                {section.title}
-              </span>
-              {section.links.map((link) => (
+    <footer className="border-t border-border">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* main footer grid */}
+        <div className="grid grid-cols-1 gap-12 py-14 md:grid-cols-[1.8fr_1fr_1fr_1fr]">
+          {/* brand column */}
+          <div>
+            <div className="font-header mb-3 text-xl font-black">
+              ¶ The Parallel
+              <br />
+              Linguistics Club
+            </div>
+            <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
+              A quarterly journal for people obsessed with how language works —
+              and why no two languages work the same way. Est. 2019.
+            </p>
+            <div className="mt-6 flex gap-4">
+              {["X", "IG", "DC", "RSS"].map((s) => (
                 <Link
-                  key={link.label}
-                  href={link.href}
-                  className="text-sm text-foreground/50 transition hover:text-foreground"
+                  key={s}
+                  href="#"
+                  className="border border-border px-2 py-1 font-mono text-[10px] text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  {link.label}
+                  {s}
                 </Link>
               ))}
             </div>
+          </div>
+
+          {/* link columns */}
+          {[
+            {
+              heading: "Explore",
+              links: ["Issues", "Languages", "Projects", "Archive"],
+            },
+            {
+              heading: "Contribute",
+              links: ["Submit a Pitch", "Field Notes", "Guidelines", "Contact"],
+            },
+            {
+              heading: "Community",
+              links: ["Discord", "Reading Circles", "Newsletter", "About"],
+            },
+          ].map((col) => (
+            <div key={col.heading}>
+              <h3 className="mb-5 font-mono text-xs tracking-widest text-muted-foreground uppercase">
+                {col.heading}
+              </h3>
+              <ul className="flex flex-col gap-3">
+                {col.links.map((l) => (
+                  <li key={l}>
+                    <Link
+                      href="#"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {l}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
         </div>
-      </div>
-      <div className="mt-10 flex w-full justify-between border-t border-border pt-4">
-        <p className="text-xs text-foreground/40">
-          {"© " +
-            new Date().getFullYear() +
-            " PlaceHolder. All rights reserved."}
-        </p>
-        <p className="text-xs text-foreground/40">
-          I dont know what to write here
-        </p>
+
+        {/* bottom bar */}
+        <div className="flex flex-col items-start justify-between gap-2 border-t border-border py-5 sm:flex-row sm:items-center">
+          <span className="font-mono text-xs text-muted-foreground">
+            © 2026 The Parallel Linguistics Club. All rights reserved.
+          </span>
+          <span className="font-mono text-xs text-muted-foreground">
+            ABCD EF-GH
+          </span>
+        </div>
       </div>
     </footer>
   )
