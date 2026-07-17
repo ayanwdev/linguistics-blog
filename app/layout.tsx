@@ -9,18 +9,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Metadata } from "next"
 import { Footer } from "@/components/footer"
 
-const playfairDisplayHeading = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-heading",
-})
-
-const notoSans = Noto_Sans({ subsets: ["latin"], variable: "--font-sans" })
-
-const fontMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-})
-
 export const metadata: Metadata = {
   title: "Linguistics Blog",
   description: "A blog about linguistics and related topics.",
@@ -29,6 +17,35 @@ export const metadata: Metadata = {
     "darkreader-lock": "",
   },
 }
+
+for (const key of [
+  "APPWRITE_API_KEY",
+  "NEXT_PUBLIC_APPWRITE_PROJECT_ID",
+  "NEXT_PUBLIC_APPWRITE_PROJECT_NAME",
+  "NEXT_PUBLIC_APPWRITE_ENDPOINT",
+  "NEXT_PUBLIC_APPWRITE_PROFILES_DB",
+  "NEXT_PUBLIC_APPWRITE_SUBMISSIONS_DB",
+  "NEXT_PUBLIC_APPRWITE_POSTS_DB",
+  "NEXT_PUBLIC_APPWRITE_SUBMISSIONS_BUCKET",
+  "NEXT_PUBLIC_APPRWITE_POSTS_BUCKET",
+  "NEXT_PUBLIC_APPRWITE_CVIMAGE_BUCKET",
+]) {
+  if (!process.env[key]) {
+    throw new Error(`Missing required environment variable: ${key}`)
+  }
+}
+
+const playfairDisplayHeading = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-heading",
+})
+
+const fontMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+})
+
+const notoSans = Noto_Sans({ subsets: ["latin"], variable: "--font-sans" })
 
 export default function RootLayout({
   children,

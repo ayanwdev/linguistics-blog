@@ -21,19 +21,19 @@ export async function getPost(slug: string) {
   const databases = new Databases(client)
   const storage = new Storage(client)
 
-  const result = await databases.listDocuments(
-    process.env.NEXT_PUBLIC_APPRWITE_POSTS_DB!,
-    "posts",
-    [Query.equal("slug", slug)],
-  )
+  const result = await databases.listDocuments({
+    databaseId: process.env.NEXT_PUBLIC_APPRWITE_POSTS_DB!,
+    collectionId: "posts",
+    queries: [Query.equal("slug", slug)],
+  })
 
   const post = result.documents[0]
   if (!post) return null
 
-  const fileBuffer = await storage.getFileDownload(
-    process.env.NEXT_PUBLIC_APPRWITE_POSTS_BUCKET!,
-    `${post.$id}.md`,
-  )
+  const fileBuffer = await storage.getFileDownload({
+    bucketId: process.env.NEXT_PUBLIC_APPRWITE_POSTS_BUCKET!,
+    fileId: `${post.$id}.md`,
+  })
   const content = Buffer.from(fileBuffer).toString("utf-8")
 
   let cover: string | null = null
@@ -41,10 +41,10 @@ export async function getPost(slug: string) {
     const fileId = `${post.$id}.${ext}`
 
     try {
-      await storage.getFile(
-        process.env.NEXT_PUBLIC_APPRWITE_CVIMAGE_BUCKET!,
+      await storage.getFile({
+        bucketId: process.env.NEXT_PUBLIC_APPRWITE_CVIMAGE_BUCKET!,
         fileId,
-      )
+      })
       cover = getFileViewUrl(
         process.env.NEXT_PUBLIC_APPRWITE_CVIMAGE_BUCKET!,
         fileId,
@@ -66,10 +66,10 @@ export async function getPosts() {
 
   const databases = new Databases(client)
 
-  const result = await databases.listDocuments(
-    process.env.NEXT_PUBLIC_APPRWITE_POSTS_DB!,
-    "posts",
-  )
+  const result = await databases.listDocuments({
+    databaseId: process.env.NEXT_PUBLIC_APPRWITE_POSTS_DB!,
+    collectionId: "posts",
+  })
 
   return result.documents
 }
