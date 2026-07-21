@@ -4,7 +4,7 @@ import { Badge } from "@/components/badge"
 import { Skeleton } from "@/components/ui/skeleton"
 
 type Article = {
-  issue: string
+  issue: number
   tag: string
   title: string
   excerpt: string
@@ -35,8 +35,13 @@ export function ArticleCardSkeleton() {
 }
 
 export function ArticleCard({ article }: { article: Article }) {
+  const href = article.slug ? `/articles/${article.slug}` : "#"
+
   return (
-    <article className="group flex h-full flex-col overflow-hidden border border-border bg-card transition-shadow duration-200 hover:shadow-md">
+    <Link
+      href={href}
+      className="group flex h-full flex-col overflow-hidden border border-border bg-card transition-shadow duration-200 hover:shadow-md"
+    >
       <div className="relative aspect-video overflow-hidden bg-muted">
         <Image
           src={article.img}
@@ -48,7 +53,7 @@ export function ArticleCard({ article }: { article: Article }) {
       <div className="flex flex-1 flex-col p-5">
         <div className="mb-3 flex items-center gap-2">
           <span className="font-mono text-[10px] text-muted-foreground">
-            {article.issue}
+            {"#" + article.issue}
           </span>
           <Badge name={article.tag} />
         </div>
@@ -56,17 +61,16 @@ export function ArticleCard({ article }: { article: Article }) {
           {article.title}
         </h3>
         <p className="mb-4 flex-1 text-sm leading-relaxed text-muted-foreground">
-          {article.excerpt.length > 156
-            ? article.excerpt.slice(0, 156) + "…"
+          {article.excerpt.length > 256
+            ? article.excerpt.slice(0, 256) + "…"
             : article.excerpt}
         </p>
-        <Link
-          href={article.slug ? `/articles/${article.slug}` : "#"}
-          className="text-xs font-medium text-foreground group-hover:underline"
-        >
-          {"Read issue →"}
-        </Link>
+        <div className="mt-auto flex justify-end">
+          <span className="text-xs font-medium text-foreground group-hover:underline">
+            Read article →
+          </span>
+        </div>
       </div>
-    </article>
+    </Link>
   )
 }
