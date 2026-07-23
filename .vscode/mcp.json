@@ -11,6 +11,10 @@
     "next-devtools": {
       "command": "yarn",
       "args": ["dlx", "next-devtools-mcp@latest"]
+    },
+    "Figma": {
+      "type": "http",
+      "url": "https://mcp.figma.com/mcp"
     }
   }
 }
